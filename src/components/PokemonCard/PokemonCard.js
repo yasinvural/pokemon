@@ -1,10 +1,11 @@
 import React from "react";
+import { Card } from "antd";
 
 const PokemonCard = ({ pokemon }) => {
   return (
-    <div>
-      <div>{pokemon.name}</div>
-    </div>
+    <Card className="pokemon-card">
+      <div className="pokemon-card__name">{pokemon.name}</div>
+    </Card>
   );
 };
 

@@ -25,7 +25,7 @@ const PokemonList = () => {
     <>
       <Tabs>
         <TabPane tab="Pokemon List" key="pokemonList">
-          <div>
+          <div className="pokemon-list-container">
             {pokemonList.map(pokemon => (
               <PokemonCard key={pokemon.name} pokemon={pokemon} />
             ))}
