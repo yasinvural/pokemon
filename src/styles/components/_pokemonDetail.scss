@@ -5,5 +5,10 @@
   align-items: center;
   text-align: center;
   width: 50%;
-  margin: 0 auto;
+  margin: 1rem auto;
+  border-radius: 6px;
+
+  @media (max-width: 425px) {
+    width: 90%;
+  }
 }
