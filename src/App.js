@@ -10,8 +10,8 @@ const App = () => {
   return (
     <>
       <PokemonContext.Provider value={{ pokemons, dispatch }}>
-        <Route exact path="/pokemon" component={PokemonList} />
-        <Route exact path="/pokemon/:name" component={PokemonDetail} />
+        <Route exact path="/" component={PokemonList} />
+        <Route exact path="/:name" component={PokemonDetail} />
       </PokemonContext.Provider>
     </>
   );

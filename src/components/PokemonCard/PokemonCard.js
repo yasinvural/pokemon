@@ -12,7 +12,7 @@ const PokemonCard = ({
   const history = useHistory();
 
   const gotoDetailPage = () => {
-    history.push(`/pokemon/${pokemon.name}`);
+    history.push(`/${pokemon.name}`);
   };
 
   const handleLikeClick = e => {

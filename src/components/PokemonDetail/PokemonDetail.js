@@ -36,7 +36,7 @@ const PokemonDetail = () => {
   }, [params.name]);
 
   const goBack = () => {
-    history.push(`/pokemon`);
+    history.push(`/`);
   };
 
   return (
