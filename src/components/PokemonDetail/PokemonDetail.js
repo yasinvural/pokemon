@@ -4,7 +4,7 @@ import PokemonHeader from "../PokemonHeader/PokemonHeader";
 import PokemonTypes from "../PokemonTypes/PokemonTypes";
 import PokemonStats from "../PokemonStats/PokemonStats";
 import PokemonMoves from "../PokemonMoves/PokemonMoves";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { baseService } from "../../services/BaseService";
 
 const PokemonDetail = () => {
@@ -13,6 +13,7 @@ const PokemonDetail = () => {
   const [stats, setStats] = useState([]);
   const [moves, setMoves] = useState([]);
   const params = useParams();
+  const history = useHistory();
 
   useEffect(() => {
     async function fetchPokemonDetails() {
@@ -26,8 +27,18 @@ const PokemonDetail = () => {
     fetchPokemonDetails();
   }, [params.name]);
 
+  const goBack = () => {
+    history.push(`/`);
+  };
+
   return (
     <Card className="pokemon-detail-container">
+      <div
+        className="pokemon-detail-container__go-back-button"
+        onClick={goBack}
+      >
+        Go to list
+      </div>
       <PokemonHeader img={img} name={params.name} />
       <div className="horizontal-line" />
       <PokemonTypes types={types} />

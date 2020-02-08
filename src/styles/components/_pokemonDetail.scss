@@ -7,7 +7,12 @@
   width: 50%;
   margin: 1rem auto;
   border-radius: 6px;
-
+  &__go-back-button {
+    float: left;
+    color: #1890ff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
   @media (max-width: 425px) {
     width: 90%;
   }
