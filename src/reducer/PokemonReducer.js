@@ -34,6 +34,11 @@ export const reducer = (state, action) => {
         ...state,
         myList: [...action.payload]
       };
+    case "clear_pokemonList":
+      return {
+        ...state,
+        pokemonList: []
+      };
     default:
       return state;
   }

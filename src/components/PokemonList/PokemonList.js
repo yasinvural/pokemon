@@ -33,6 +33,12 @@ const PokemonList = () => {
       });
     }
     if (!noMoreRequest) fetchPokemonList();
+
+    return () => {
+      dispatch({
+        type: "clear_pokemonList"
+      });
+    };
   }, [offset]);
 
   useEffect(() => {
@@ -63,7 +69,7 @@ const PokemonList = () => {
   };
 
   const handleSetMyPokemonList = myPokemon => {
-    if (myList.indexOf(myPokemon) === -1) {
+    if (myList.findIndex(pokemon => pokemon.name === myPokemon.name) === -1) {
       dispatch({
         type: "set_myList",
         payload: [...myList, myPokemon]
