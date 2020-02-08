@@ -3,6 +3,7 @@ import { Card } from "antd";
 import PokemonHeader from "../PokemonHeader/PokemonHeader";
 import PokemonTypes from "../PokemonTypes/PokemonTypes";
 import PokemonStats from "../PokemonStats/PokemonStats";
+import PokemonMoves from "../PokemonMoves/PokemonMoves";
 import { useParams } from "react-router-dom";
 import { baseService } from "../../services/BaseService";
 
@@ -33,13 +34,7 @@ const PokemonDetail = () => {
       <div className="horizontal-line" />
       <PokemonStats stats={stats} />
       <div className="horizontal-line" />
-      <div className="moves-container">
-        {moves.map(move => (
-          <div key={move.move.name} className="moves-container__move">
-            {move.move.name}
-          </div>
-        ))}
-      </div>
+      <PokemonMoves moves={moves} />
     </Card>
   );
 };

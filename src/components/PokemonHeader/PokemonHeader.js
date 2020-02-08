@@ -6,7 +6,7 @@ const PokemonHeader = ({ img, name }) => {
       <div className="pokemon-header__img-container">
         <img src={img} alt={name} />
       </div>
-      <div className="pokemon-header__name">{name}</div>
+      <div className="pokemon-header__name">{name.toUpperCase()}</div>
     </div>
   );
 };

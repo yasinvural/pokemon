@@ -1,0 +1,14 @@
+.moves-container {
+  display: flex;
+  justify-content: space-around;
+  &__move {
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+}
