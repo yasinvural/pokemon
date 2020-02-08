@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { baseService } from "../../services/BaseService";
 import PokemonCard from "../PokemonCard/PokemonCard";
+
 import { Tabs } from "antd";
 
 const { TabPane } = Tabs;
@@ -47,18 +48,39 @@ const PokemonList = () => {
     }
   };
 
+  const handleSetMyPokemonList = myPokemon => {
+    if (myList.indexOf(myPokemon) === -1) {
+      setMyList(list => [...list, myPokemon]);
+    } else {
+      const list = myList.filter(pokemon => pokemon.name !== myPokemon.name);
+      setMyList(list);
+    }
+  };
+
   return (
     <>
       <Tabs>
         <TabPane tab="Pokemon List" key="pokemonList">
           <div className="pokemon-list-container">
             {pokemonList.map(pokemon => (
-              <PokemonCard key={pokemon.name} pokemon={pokemon} />
+              <PokemonCard
+                key={pokemon.name}
+                pokemon={pokemon}
+                handleSetMyPokemonList={handleSetMyPokemonList}
+              />
             ))}
           </div>
         </TabPane>
         <TabPane tab="My List" key="myList">
-          <div>my list </div>
+          <div className="pokemon-list-container">
+            {myList.map(pokemon => (
+              <PokemonCard
+                key={pokemon.name}
+                pokemon={pokemon}
+                handleSetMyPokemonList={handleSetMyPokemonList}
+              />
+            ))}
+          </div>
         </TabPane>
       </Tabs>
     </>

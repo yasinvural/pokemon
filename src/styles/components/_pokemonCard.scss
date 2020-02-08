@@ -7,6 +7,11 @@
   margin: 1% 2%;
   border-radius: 6px;
   box-shadow: 0 0 5px #ccc;
+  cursor: pointer;
+
+  &__svg {
+    margin-top: 1rem;
+  }
 
   @media (max-width: 1024px) {
     width: 29%;
