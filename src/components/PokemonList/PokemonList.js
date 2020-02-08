@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { baseService } from "../../services/BaseService";
-
+import PokemonCard from "../PokemonCard/PokemonCard";
 import { Tabs } from "antd";
 
 const { TabPane } = Tabs;
 
 const PokemonList = () => {
+  const LIMIT = 20;
+  const [offset, setOffset] = useState(0);
   const [pokemonList, setPokemonList] = useState([]);
   const [myList, setMyList] = useState([]);
 
   useEffect(() => {
     async function fetchPokemonList() {
-      const result = await baseService.get("pokemon");
-      console.log(result);
+      const result = await baseService.get(
+        `pokemon?offset=${offset}&limit=${LIMIT}`
+      );
+      setPokemonList(result.data.results);
     }
     fetchPokemonList();
   }, []);
@@ -21,7 +25,11 @@ const PokemonList = () => {
     <>
       <Tabs>
         <TabPane tab="Pokemon List" key="pokemonList">
-          <div>pokemon list</div>
+          <div>
+            {pokemonList.map(pokemon => (
+              <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            ))}
+          </div>
         </TabPane>
         <TabPane tab="My List" key="myList">
           <div>my list </div>

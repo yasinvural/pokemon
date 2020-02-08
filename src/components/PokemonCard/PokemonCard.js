@@ -1,7 +1,11 @@
 import React from "react";
 
-const PokemonCard = () => {
-  return <>Pokemon Card will be here.</>;
+const PokemonCard = ({ pokemon }) => {
+  return (
+    <div>
+      <div>{pokemon.name}</div>
+    </div>
+  );
 };
 
 export default PokemonCard;
