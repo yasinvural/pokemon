@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { baseService } from "../../services/BaseService";
 import PokemonCard from "../PokemonCard/PokemonCard";
+import { usePokemonValue } from "../../context/PokemonContext";
 
 import { Tabs } from "antd";
 
 const { TabPane } = Tabs;
 
 const PokemonList = () => {
-  const LIMIT = 20;
-  const [noMoreRequest, setNoMoreRequest] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const [pokemonList, setPokemonList] = useState([]);
-  const [myList, setMyList] = useState([]);
+  const { pokemons, dispatch } = usePokemonValue();
+  const {
+    loading,
+    limit,
+    noMoreRequest,
+    offset,
+    pokemonList,
+    myList
+  } = pokemons;
 
   useEffect(() => {
     async function fetchPokemonList() {
       const result = await baseService.get(
-        `pokemon?offset=${offset}&limit=${LIMIT}`
+        `pokemon?offset=${offset}&limit=${limit}`
       );
-      setPokemonList(pokemonList => [...pokemonList, ...result.data.results]);
-      setNoMoreRequest(result.data.next ? false : true);
+      dispatch({
+        type: "set_pokemonList",
+        payload: [...result.data.results]
+      });
+      dispatch({
+        type: "set_noMoreRequest",
+        payload: result.data.next ? false : true
+      });
     }
     if (!noMoreRequest) fetchPokemonList();
   }, [offset]);
@@ -43,17 +54,26 @@ const PokemonList = () => {
     const scrolledToBottom =
       Math.ceil(scrollTop + clientHeight) >= scrollHeight;
     if (scrolledToBottom) {
-      setOffset(offset => offset + LIMIT);
+      dispatch({
+        type: "set_offset",
+        payload: offset + limit
+      });
       return;
     }
   };
 
   const handleSetMyPokemonList = myPokemon => {
     if (myList.indexOf(myPokemon) === -1) {
-      setMyList(list => [...list, myPokemon]);
+      dispatch({
+        type: "set_myList",
+        payload: [...myList, myPokemon]
+      });
     } else {
       const list = myList.filter(pokemon => pokemon.name !== myPokemon.name);
-      setMyList(list);
+      dispatch({
+        type: "set_myList",
+        payload: [...list]
+      });
     }
   };
 
