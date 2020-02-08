@@ -14,8 +14,8 @@ const PokemonDetail = () => {
     async function fetchPokemonDetails() {
       const result = await baseService.get(`pokemon/${params.name}`);
       const { sprites, stats, moves, types } = result.data;
-      setTypes(types);
       setImg(sprites.front_default);
+      setTypes(types);
       setStats(stats);
       setMoves(moves.slice(0, 5));
     }
@@ -32,6 +32,20 @@ const PokemonDetail = () => {
         {types.map(type => (
           <div className="types-container__type" key={type.type.name}>
             {type.type.name}
+          </div>
+        ))}
+      </div>
+      <div className="stats-container">
+        {stats.map(stat => (
+          <div key={stat.stat.name} className="stats-container__stats">
+            {stat.base_stat} - {stat.stat.name}
+          </div>
+        ))}
+      </div>
+      <div className="moves-container">
+        {moves.map(move => (
+          <div key={move.move.name} className="moves-container__move">
+            {move.move.name}
           </div>
         ))}
       </div>
