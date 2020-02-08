@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card } from "antd";
+import { Card, Progress } from "antd";
 import { useParams } from "react-router-dom";
 import { baseService } from "../../services/BaseService";
 
@@ -28,6 +28,7 @@ const PokemonDetail = () => {
         <img src={img} alt={params.name} />
       </div>
       <div className="pokemon-detail-container__name">{params.name}</div>
+      <div className="horizontal-line" />
       <div className="types-container">
         {types.map(type => (
           <div className="types-container__type" key={type.type.name}>
@@ -35,13 +36,22 @@ const PokemonDetail = () => {
           </div>
         ))}
       </div>
+      <div className="horizontal-line" />
       <div className="stats-container">
         {stats.map(stat => (
           <div key={stat.stat.name} className="stats-container__stats">
-            {stat.base_stat} - {stat.stat.name}
+            <div className="stats-container__stats__name">{stat.stat.name}</div>
+            <div className="stats-container__stats__progress">
+              <Progress percent={stat.base_stat} showInfo={false} />
+              <span>{stat.base_stat}%</span>
+            </div>
+            <div className="stats-container__stats__percentage">
+              {stat.base_stat}%
+            </div>
           </div>
         ))}
       </div>
+      <div className="horizontal-line" />
       <div className="moves-container">
         {moves.map(move => (
           <div key={move.move.name} className="moves-container__move">

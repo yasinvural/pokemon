@@ -1,8 +1,10 @@
 @import "./reset";
+@import "./common";
 @import "./components/pokemonList";
 @import "./components/pokemonCard";
 @import "./components/pokemonDetail";
 
 .ant-card-body {
   width: 100%;
+  text-align: center;
 }
