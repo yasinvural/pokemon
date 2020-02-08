@@ -43,12 +43,6 @@ const PokemonList = () => {
         payload: false
       });
     }
-
-    // return () => {
-    //   dispatch({
-    //     type: "clear_pokemonList"
-    //   });
-    // };
   }, [offset]);
 
   useEffect(() => {
@@ -103,7 +97,11 @@ const PokemonList = () => {
                 loading={loading}
                 key={pokemon.name}
                 pokemon={pokemon}
-                otherList={myList}
+                isSelected={
+                  myList.findIndex(x => x.name === pokemon.name) === -1
+                    ? false
+                    : true
+                }
                 handleSetMyPokemonList={handleSetMyPokemonList}
               />
             ))}
@@ -116,7 +114,7 @@ const PokemonList = () => {
                 loading={loading}
                 key={pokemon.name}
                 pokemon={pokemon}
-                otherList={pokemonList}
+                isSelected={true}
                 handleSetMyPokemonList={handleSetMyPokemonList}
               />
             ))}

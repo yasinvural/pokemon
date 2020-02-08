@@ -6,8 +6,10 @@ import PokemonStats from "../PokemonStats/PokemonStats";
 import PokemonMoves from "../PokemonMoves/PokemonMoves";
 import { useParams, useHistory } from "react-router-dom";
 import { baseService } from "../../services/BaseService";
+import { usePokemonValue } from "../../context/PokemonContext";
 
 const PokemonDetail = () => {
+  const { pokemons, dispatch } = usePokemonValue();
   const [loading, setLoading] = useState(false);
   const [img, setImg] = useState("");
   const [types, setTypes] = useState([]);
@@ -28,6 +30,9 @@ const PokemonDetail = () => {
     setLoading(true);
     fetchPokemonDetails();
     setLoading(false);
+    dispatch({
+      type: "clear_pokemonList"
+    });
   }, [params.name]);
 
   const goBack = () => {

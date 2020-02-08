@@ -37,6 +37,7 @@ export const reducer = (state, action) => {
     case "clear_pokemonList":
       return {
         ...state,
+        offset: 0,
         pokemonList: []
       };
     default:

@@ -3,3 +3,9 @@
   border: 1px solid #ccc;
   margin: 1rem 0;
 }
+
+// OVERRIDE //
+.ant-card-body {
+  width: 100%;
+  text-align: center;
+}

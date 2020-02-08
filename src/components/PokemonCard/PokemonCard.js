@@ -7,7 +7,7 @@ const PokemonCard = ({
   pokemon,
   handleSetMyPokemonList,
   loading,
-  otherList
+  isSelected
 }) => {
   const history = useHistory();
 
@@ -21,10 +21,10 @@ const PokemonCard = ({
   };
 
   const renderSvg = () => {
-    if (otherList.findIndex(x => x.name === pokemon.name) === -1) {
-      return likeEmpty();
-    } else {
+    if (isSelected) {
       return likeFilled();
+    } else {
+      return likeEmpty();
     }
   };
 
