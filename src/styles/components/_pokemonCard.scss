@@ -1,10 +1,22 @@
 .pokemon-card {
-  width: 250px;
-  height: 250px;
+  width: 21%;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 1% 2%;
   border-radius: 6px;
   box-shadow: 0 0 5px #ccc;
+
+  @media (max-width: 1024px) {
+    width: 29%;
+  }
+  @media (max-width: 425px) {
+    width: 46%;
+    margin: 3% 2%;
+  }
+  @media (max-width: 375px) {
+    width: 90%;
+    margin: 5%;
+  }
 }
