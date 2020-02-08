@@ -1,0 +1,15 @@
+.pokemon-header {
+  &__img-container {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  &__name {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}

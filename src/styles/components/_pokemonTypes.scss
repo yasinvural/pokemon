@@ -1,0 +1,11 @@
+.types-container {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  &__type {
+    border: 1px solid #ccc;
+    padding: 0.5rem;
+    border-radius: 6px;
+  }
+}
