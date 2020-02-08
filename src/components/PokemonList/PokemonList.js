@@ -7,6 +7,7 @@ const { TabPane } = Tabs;
 
 const PokemonList = () => {
   const LIMIT = 20;
+  const [noMoreRequest, setNoMoreRequest] = useState(false);
   const [offset, setOffset] = useState(0);
   const [pokemonList, setPokemonList] = useState([]);
   const [myList, setMyList] = useState([]);
@@ -16,10 +17,35 @@ const PokemonList = () => {
       const result = await baseService.get(
         `pokemon?offset=${offset}&limit=${LIMIT}`
       );
-      setPokemonList(result.data.results);
+      setPokemonList(pokemonList => [...pokemonList, ...result.data.results]);
+      setNoMoreRequest(result.data.next ? false : true);
     }
-    fetchPokemonList();
-  }, []);
+    if (!noMoreRequest) fetchPokemonList();
+  }, [offset]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleOnScroll);
+    return () => {
+      window.removeEventListener("scroll", handleOnScroll);
+    };
+  });
+
+  const handleOnScroll = () => {
+    const scrollTop =
+      (document.documentElement && document.documentElement.scrollTop) ||
+      document.body.scrollTop;
+    const scrollHeight =
+      (document.documentElement && document.documentElement.scrollHeight) ||
+      document.body.scrollHeight;
+    const clientHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+    const scrolledToBottom =
+      Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+    if (scrolledToBottom) {
+      setOffset(offset => offset + LIMIT);
+      return;
+    }
+  };
 
   return (
     <>
