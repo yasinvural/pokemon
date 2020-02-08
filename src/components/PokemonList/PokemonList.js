@@ -44,11 +44,11 @@ const PokemonList = () => {
       });
     }
 
-    return () => {
-      dispatch({
-        type: "clear_pokemonList"
-      });
-    };
+    // return () => {
+    //   dispatch({
+    //     type: "clear_pokemonList"
+    //   });
+    // };
   }, [offset]);
 
   useEffect(() => {
@@ -103,6 +103,7 @@ const PokemonList = () => {
                 loading={loading}
                 key={pokemon.name}
                 pokemon={pokemon}
+                otherList={myList}
                 handleSetMyPokemonList={handleSetMyPokemonList}
               />
             ))}
@@ -115,6 +116,7 @@ const PokemonList = () => {
                 loading={loading}
                 key={pokemon.name}
                 pokemon={pokemon}
+                otherList={pokemonList}
                 handleSetMyPokemonList={handleSetMyPokemonList}
               />
             ))}
