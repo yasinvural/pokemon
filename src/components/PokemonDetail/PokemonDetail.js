@@ -8,6 +8,7 @@ import { useParams, useHistory } from "react-router-dom";
 import { baseService } from "../../services/BaseService";
 
 const PokemonDetail = () => {
+  const [loading, setLoading] = useState(false);
   const [img, setImg] = useState("");
   const [types, setTypes] = useState([]);
   const [stats, setStats] = useState([]);
@@ -24,7 +25,9 @@ const PokemonDetail = () => {
       setStats(stats);
       setMoves(moves.slice(0, 5));
     }
+    setLoading(true);
     fetchPokemonDetails();
+    setLoading(false);
   }, [params.name]);
 
   const goBack = () => {
@@ -32,7 +35,7 @@ const PokemonDetail = () => {
   };
 
   return (
-    <Card className="pokemon-detail-container">
+    <Card className="pokemon-detail-container" loading={loading}>
       <div
         className="pokemon-detail-container__go-back-button"
         onClick={goBack}

@@ -3,7 +3,7 @@ import { Card } from "antd";
 import { useHistory } from "react-router-dom";
 import { likeEmpty, likeFilled } from "../../svg/svg";
 
-const PokemonCard = ({ pokemon, handleSetMyPokemonList }) => {
+const PokemonCard = ({ pokemon, handleSetMyPokemonList, loading }) => {
   const history = useHistory();
 
   const gotoDetailPage = () => {
@@ -16,7 +16,7 @@ const PokemonCard = ({ pokemon, handleSetMyPokemonList }) => {
   };
 
   return (
-    <Card className="pokemon-card" onClick={gotoDetailPage}>
+    <Card className="pokemon-card" onClick={gotoDetailPage} loading={loading}>
       <div className="pokemon-card__name">{pokemon.name}</div>
       <div className="pokemon-card__svg" onClick={handleLikeClick}>
         {likeEmpty()}

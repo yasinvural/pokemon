@@ -32,7 +32,17 @@ const PokemonList = () => {
         payload: result.data.next ? false : true
       });
     }
-    if (!noMoreRequest) fetchPokemonList();
+    if (!noMoreRequest) {
+      dispatch({
+        type: "set_loading",
+        payload: true
+      });
+      fetchPokemonList();
+      dispatch({
+        type: "set_loading",
+        payload: false
+      });
+    }
 
     return () => {
       dispatch({
@@ -90,6 +100,7 @@ const PokemonList = () => {
           <div className="pokemon-list-container">
             {pokemonList.map(pokemon => (
               <PokemonCard
+                loading={loading}
                 key={pokemon.name}
                 pokemon={pokemon}
                 handleSetMyPokemonList={handleSetMyPokemonList}
@@ -101,6 +112,7 @@ const PokemonList = () => {
           <div className="pokemon-list-container">
             {myList.map(pokemon => (
               <PokemonCard
+                loading={loading}
                 key={pokemon.name}
                 pokemon={pokemon}
                 handleSetMyPokemonList={handleSetMyPokemonList}
